@@ -1,6 +1,7 @@
 import pygame
 import sys
 import math
+import random
 
 pygame.init()
 
@@ -29,6 +30,13 @@ rotation_speeds = [0.005, 0.004, 0.003, 0.002, 0.0015, 0.001, 0.0008, 0.0005]
 
 font = pygame.font.Font(None, 36)
 
+
+def draw_stars(num_stars):
+    for _ in range(num_stars):
+        x = random.randint(0, width)
+        y = random.randint(0, height)
+        pygame.draw.circle(screen, (255, 255, 255), (x, y), random.randint(1, 3))
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -36,6 +44,7 @@ while True:
             sys.exit()
 
     screen.fill(black)
+    draw_stars(100)  
     pygame.draw.circle(screen, yellow, sun_pos, 50)
 
     mouse_pos = pygame.mouse.get_pos()
@@ -44,6 +53,7 @@ while True:
         x = sun_pos[0] + planet_distances[i] * math.cos(planet_angles[i])
         y = sun_pos[1] + planet_distances[i] * math.sin(planet_angles[i])
         pygame.draw.circle(screen, planet_colors[i], (int(x), int(y)), planet_sizes[i])
+
 
         if (int(x) - planet_sizes[i] < mouse_pos[0] < int(x) + planet_sizes[i] and
             int(y) - planet_sizes[i] < mouse_pos[1] < int(y) + planet_sizes[i]):
