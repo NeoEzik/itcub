@@ -1,4 +1,9 @@
-i
+import pygame
+import sys
+import math
+
+pygame.init()
+
 width, height = 1920, 1080
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Солнечная система")
